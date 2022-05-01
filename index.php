@@ -77,11 +77,11 @@ $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶ�
 
                     <li id="obj_sound_<?php echo $num; ?>">
                         
-                        <p id="js-copytext" style="display:none;"><?php echo SERVER_URL . SERVER_VOICE_URL . $num . '.mp3'; ?></p>
-                        <button class="discord" type="button" id="js-copybtn">
+                        <p id="js_copytext_<?php echo $num; ?>" style="display:none;"><?php echo SERVER_URL . SERVER_VOICE_URL . $num . '.mp3'; ?></p>
+                        <button class="discord" type="button" id="js_copybtn_<?php echo $num; ?>">
                             <i class="far fa-clipboard"></i>
                         </button>
-                        <p id="js-copyalert" class="copy_alert">コピーできました！</p>
+                        <p id="js_copyalert_<?php echo $num; ?>" class="copy_alert">コピーできました！</p>
 
                         <p>
                             <a href="javascript:void(0);">
@@ -97,6 +97,21 @@ $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶ�
                     <audio id="target_btn_sound_<?php echo $num; ?>" preload="none">
                         <source src="./voice/bluehawk/<?php echo $num; ?>.mp3"  type="audio/mp3"/>
                     </audio>
+
+                    <script>
+                        $(function() {
+                            $('#js_copybtn_<?php echo $num; ?>').on('click', function(){
+                                let text = $('#js_copytext_<?php echo $num; ?>').text();
+                                let $textarea = $('<textarea></textarea>');
+                                $textarea.text(text);
+                                $(this).append($textarea);
+                                $textarea.select();
+                                document.execCommand('copy');
+                                $textarea.remove();
+                                $('#js_copyalert_<?php echo $num; ?>').show().delay(2000).fadeOut(400);
+                            });
+                        });
+                    </script>
 
                     <?php } ?>
 
@@ -133,19 +148,6 @@ function url_copy(obj){
     voiceUrl.getAttribute('value').select();
     document.execCommand("copy");
 }
-
-$(function() {
-    $('#js-copybtn').on('click', function(){
-        let text = $('#js-copytext').text();
-        let $textarea = $('<textarea></textarea>');
-        $textarea.text(text);
-        $(this).append($textarea);
-        $textarea.select();
-        document.execCommand('copy');
-        $textarea.remove();
-        $('#js-copyalert').show().delay(2000).fadeOut(400);
-    });
-});
 
 //media再生
 (function (window, $) {
