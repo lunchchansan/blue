@@ -1,10 +1,6 @@
 <?php
 
-define('SERVER_DOMAIN','Bluehawkの声保管して委員会(仮称)');
-define('SERVER_SITE_NAME','Bluehawk Archives');
-define('SERVER_USER_NAME','Bluehawk');
-define('SERVER_URL','https://steam.moe/blue/');
-define('SERVER_VOICE_URL','voice/bluehawk/');
+include('./php/config.php');
 
 $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶﾞ','死ね！','いらんでしょ','壊れる','おじいさん','戻った','だめ','富豪かよ','ブルスク','あ～','死ね未成年','コケッコッコ');
 ?>
@@ -75,18 +71,17 @@ $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶ�
                 <article class="index">
                     再生ボタンを押すと声が再生されます。
                 </article>
-
                 <ul id="user_voice">
 
                     <?php foreach($voice as $num => $v){ ?>
 
                     <li id="obj_sound_<?php echo $num; ?>">
                         
-                        <p class="discord">
-                            <a href="<?php echo SERVER_URL . SERVER_VOICE_URL . $num . '.mp3'; ?>" onclick="alert('右クリックでコピーしてください');">
-                                <i class="far fa-clipboard"></i>
-                            </a>
-                        </p>
+                        <p id="js-copytext" style="display:none;"><?php echo SERVER_URL . SERVER_VOICE_URL . $num . '.mp3'; ?></p>
+                        <button class="discord" type="button" id="js-copybtn">
+                            <i class="far fa-clipboard"></i>
+                        </button>
+                        <p id="js-copyalert" class="copy_alert">コピーできました！</p>
 
                         <p>
                             <a href="javascript:void(0);">
@@ -133,9 +128,24 @@ $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶ�
 
 <script type="text/javascript">
 
-function url_copy(){
-    document.execCommand("");
+function url_copy(obj){
+    var voiceUrl = obj.firstChild;
+    voiceUrl.getAttribute('value').select();
+    document.execCommand("copy");
 }
+
+$(function() {
+    $('#js-copybtn').on('click', function(){
+        let text = $('#js-copytext').text();
+        let $textarea = $('<textarea></textarea>');
+        $textarea.text(text);
+        $(this).append($textarea);
+        $textarea.select();
+        document.execCommand('copy');
+        $textarea.remove();
+        $('#js-copyalert').show().delay(2000).fadeOut(400);
+    });
+});
 
 //media再生
 (function (window, $) {
