@@ -116,6 +116,11 @@ button.discord{
     border-radius: 150px;
     padding:7px 15px;
     display:inline-block;
+    cursor: pointer;
+}
+
+button.discord:hover{
+    background: #999;
 }
 
 /* 音量調整のやつ */
