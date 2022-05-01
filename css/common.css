@@ -1,0 +1,135 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+/* main color #000049 */
+
+body{
+    margin:0;
+    padding:0;
+    text-align: center;
+}
+
+body,h1{
+    color:#fff;
+}
+
+a{ color: #fff; }
+
+h1{
+    font-family: 'Righteous', cursive;
+    font-size: 70px;
+    text-shadow: none;
+}
+
+li{ list-style-type: none; }
+
+#background{
+    background-image: url('../image/common/bluehawk.png');
+    background-attachment: fixed;
+}
+
+#blur{
+    backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    display:inline-block;
+    width:100%;
+}
+
+#wrapper{
+    width: 56%;
+    margin: 0 auto;
+}
+
+#main_wrapper,
+#footer_wraqpper{
+    width: 100%;
+    display: inline-block;
+    min-width: 0;
+}
+
+#main_wrapper{ 
+    margin: 0 auto 30px;
+}
+
+#footer_wraqpper{ margin: 60px auto 0; }
+
+#pan_list{
+    backdrop-filter: blur(10px);
+    text-align: left;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1000;
+    top:0;
+    box-shadow:0 0px 10px rgba(0,0,0,0.4);
+}
+
+#pan_list p{
+    padding: 15px;
+    font-size: 13px;
+}
+
+article.index{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 20px auto;
+}
+
+li[id^="obj_sound_"]{
+    margin: 10px 15px;
+    display: inline-block;
+}
+
+span[id^="btn_sound_"]{
+    background: #ca1715;
+    margin: 15px auto;
+    display: table-cell;
+    vertical-align: middle;
+    color: #fff;
+    border-radius: 12px;
+    text-align: center;
+    height:70px;
+    padding: 0 30px;
+    cursor: pointer;
+}
+
+body span.do{
+    background-color: #ccc;
+}
+
+span[id^="btn_sound_"] i{ 
+    font-size: 30px;
+    color: #fff;
+}
+
+.discord{
+    font-size:20px;
+    margin-bottom:15px;
+    background: #666;
+    border-radius: 150px;
+    padding:7px 15px;
+    display:inline-block;
+}
+
+/* 音量調整のやつ */
+.volume_button{
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    font-size: 70px;
+}
+.volume_button:hover{ opacity: 0.5; }
+
+/* スクロールボタン */
+.scroll_button{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    font-size: 70px;
+}
+.scroll_button:hover{ opacity: 0.5; }
+
+footer{
+    margin: 500px 0 30px;
+}
