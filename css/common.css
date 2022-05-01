@@ -1,7 +1,11 @@
+@charset "utf-8";
+
 *{
     margin:0;
     padding:0;
 }
+
+/* testt */ 
 
 /* main color #000049 */
 
@@ -103,10 +107,12 @@ span[id^="btn_sound_"] i{
     color: #fff;
 }
 
-.discord{
+button.discord{
     font-size:20px;
     margin-bottom:15px;
     background: #666;
+    color: #fff;
+    border: none;
     border-radius: 150px;
     padding:7px 15px;
     display:inline-block;
@@ -132,4 +138,8 @@ span[id^="btn_sound_"] i{
 
 footer{
     margin: 500px 0 30px;
+}
+
+.copy_alert {
+    display: none;
 }
