@@ -107,6 +107,8 @@ button.discord{
     font-size:20px;
     margin-bottom:15px;
     background: #666;
+    color: #fff;
+    border: none;
     border-radius: 150px;
     padding:7px 15px;
     display:inline-block;
