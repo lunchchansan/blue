@@ -71,6 +71,15 @@ $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶ�
                 <article class="index">
                     再生ボタンを押すと声が再生されます。
                 </article>
+                <!-- #2 アイコンが出ない-->
+                <p>
+                    <a href="javascript:void(0);">
+                        <span id="loop">
+                            <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true">loop</i>
+                            <input type="checkbox" checked style="display:none;">
+                        </span>
+                    </a>
+                </p>
                 <ul id="user_voice">
 
                     <?php foreach($voice as $num => $v){ ?>
@@ -154,29 +163,43 @@ function url_copy(obj){
     'use strict';
 
     $.fn.useSound = function (event, selector) {
-    var audio_tag = $(selector)[0];
-    if(audio_tag == undefined) {
-        return this;
-    }
-    this.on(event, function(e){
-        e.preventDefault();
-        audio_tag.volume = 0.5;
-        //ON,OFFの判定
-        if(audio_tag.paused) {
-            $("i", this).attr('class', "fa fa-pause");
-            $(this).attr('class', "do");
-            audio_tag.play();
-            audio_tag.loop = true;
-        } else {
-            $("i",this).attr('class', "fa fa-play");
-            $(this).removeClass("do");
-            audio_tag.pause();
-            audio_tag.currentTime = 0;
-            audio_tag.loop = false;
+        var audio_tag = $(selector)[0];
+        if(audio_tag == undefined) {
+            return this;
         }
-    });
-    return this;
+        this.on(event, function(e){
+            e.preventDefault();
+            audio_tag.volume = 0.5;
+            //ループボタンの判定
+            var check = $('#loop').children('input').prop("checked");
+            if(check){
+                //ON,OFFの判定
+                if(audio_tag.paused) {
+                    $("i", this).attr('class', "fa fa-pause");
+                    $(this).attr('class', "do");
+                    audio_tag.play();
+                    audio_tag.loop = true;
+                } else {
+                    $("i",this).attr('class', "fa fa-play");
+                    $(this).removeClass("do");
+                    audio_tag.pause();
+                    audio_tag.currentTime = 0;
+                    audio_tag.loop = false;
+                }
+            }else{
+                $("i", this).attr('class', "fa fa-pause");
+                $(this).attr('class', "do");
+                audio_tag.play();
+                audio_tag.loop = false;
+                audio_tag.onended = (event) => {
+                    $("i",this).attr('class', "fa fa-play");
+                    $(this).removeClass("do");
+                };
+            }
+        });
+        return this;
     };
+
 
 })(this, this.jQuery);
 
@@ -188,6 +211,21 @@ $(function() {
         var id = e.attr("id");
         e.addClass("btn_2");
         e.useSound('mousedown touchend', "#target_" + id);
+    });
+
+    // ループボタン
+    $('#loop').on('mousedown touchend', function() {
+        var check = $(this).children('input').prop("checked");
+        if(check){
+            $("i", this).attr('class', "fa-thin fa-rotate-left");
+            $(this).children('input').prop('checked', false);
+            alert("debug loopOn → loopOff");
+        }else{
+            $("i", this).attr('class', "fa-solid fa-rotate-left");
+            $(this).children('input').prop('checked', true);
+            alert("debug loopOff → loopOn");
+        }
+        
     });
 
 });
