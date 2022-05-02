@@ -151,32 +151,32 @@ function url_copy(obj){
 
 //media再生
 (function (window, $) {
-  'use strict';
+    'use strict';
 
-  $.fn.useSound = function (event, selector) {
+    $.fn.useSound = function (event, selector) {
     var audio_tag = $(selector)[0];
     if(audio_tag == undefined) {
         return this;
     }
     this.on(event, function(e){
-      e.preventDefault();
-      audio_tag.volume = 0.5;
-      //ON,OFFの判定
-      if(audio_tag.paused) {
-        $("i", this).attr('class', "fa fa-pause");
-        $(this).attr('class', "do");
-        audio_tag.play();
-        audio_tag.loop = true;
-      } else {
-        $("i",this).attr('class', "fa fa-play");
-        $(this).removeClass("do");
-        audio_tag.pause();
-        audio_tag.currentTime = 0;
-        audio_tag.loop = false;
-      }
+        e.preventDefault();
+        audio_tag.volume = 0.5;
+        //ON,OFFの判定
+        if(audio_tag.paused) {
+            $("i", this).attr('class', "fa fa-pause");
+            $(this).attr('class', "do");
+            audio_tag.play();
+            audio_tag.loop = true;
+        } else {
+            $("i",this).attr('class', "fa fa-play");
+            $(this).removeClass("do");
+            audio_tag.pause();
+            audio_tag.currentTime = 0;
+            audio_tag.loop = false;
+        }
     });
     return this;
-  };
+    };
 
 })(this, this.jQuery);
 
