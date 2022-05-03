@@ -5,8 +5,6 @@
     padding:0;
 }
 
-/* testt */ 
-
 /* main color #000049 */
 
 body{
@@ -159,6 +157,55 @@ footer{
     margin: 500px 0 30px;
 }
 
+/* チェックボックスデザイン */
+.toggle_button {
+    position: relative;
+    width: 78px;
+    height: 48px;
+    margin: 15px auto 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .toggle_button input[type=checkbox] {
+    display: none;
+  }
+  .toggle_button:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #999;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+  }
+  .toggle_button:after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 42px;
+    height: 42px;
+    display: block;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 9px 28px -6px rgba(0, 0, 0, 0.3);
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+  }
+  .toggle_button.checked:before {
+    background: #21db3a;
+  }
+  .toggle_button.checked:after {
+    left: 33px;
+    box-shadow: 0 9px 28px -6px rgba(0, 0, 0, 0.5);
+  }
+
+
+/*なんだっけこれ*/
 .copy_alert {
     display: none;
 }
