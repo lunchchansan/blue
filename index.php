@@ -67,19 +67,19 @@ $voice = array('ｴﾈﾐｰｷｨﾙ','全滅です','意味ﾜｶﾝﾈｴｶ�
             </div>
 
             <div id="main_wrapper">
+                
+                    <article class="index">
+                        <p>音声ループ<p>
+                    </article>
+                    
+                    <article class="sub">
+                        <a href="javascript:void(0);">
+                            <div id="loop" class="toggle_button checked">
+                                <input type="checkbox" name="loop_flg" checked>
+                            </div>
+                        </a>
+                    </article>
 
-                <article class="index">
-                    再生ボタンを押すと声が再生されます。
-                </article>
-                <!-- #2 アイコンが出ない-->
-                <p>
-                    <a href="javascript:void(0);">
-                        <span id="loop">
-                            <i class="fa-solid fa-arrow-rotate-left" aria-hidden="true">loop</i>
-                            <input type="checkbox" checked style="display:none;">
-                        </span>
-                    </a>
-                </p>
                 <ul id="user_voice">
 
                     <?php foreach($voice as $num => $v){ ?>
@@ -215,15 +215,17 @@ $(function() {
 
     // ループボタン
     $('#loop').on('mousedown touchend', function() {
+
         var check = $(this).children('input').prop("checked");
+
         if(check){
-            $("i", this).attr('class', "fa-thin fa-rotate-left");
+            //$("i", this).attr('class', "fa-thin fa-rotate-left");
             $(this).children('input').prop('checked', false);
-            alert("debug loopOn → loopOff");
+            $(".toggle_button").toggleClass("checked");
         }else{
-            $("i", this).attr('class', "fa-solid fa-rotate-left");
+            //$("i", this).attr('class', "fa-solid fa-rotate-left");
             $(this).children('input').prop('checked', true);
-            alert("debug loopOff → loopOn");
+            $(".toggle_button").toggleClass("checked");
         }
         
     });
